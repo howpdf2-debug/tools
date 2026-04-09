@@ -48,71 +48,76 @@
       <div class="text-sm text-zinc-500 mb-6 flex items-center gap-2">
         <a href="../index.html" class="hover:text-purple-600">Home</a>
         <span>›</span>
-        <a href="../index.html#pdf" class="hover:text-purple-600">PDF Tools</a>
-        <span>›</span>
         <span class="text-purple-700 font-medium">Merge PDF</span>
       </div>
 
       <!-- Title -->
-      <h1 class="text-4xl md:text-5xl font-bold mb-3">Merge PDF</h1>
-      <p class="text-zinc-600 text-lg md:text-xl">Combine multiple PDF files into one document - fast, free, and secure</p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-2">Merge PDF</h1>
+      <p class="text-zinc-600 text-lg">Combine multiple PDF files into one document - fast, free, and secure</p>
 
       <!-- Tabs -->
-      <div class="flex border-b mt-10 mb-8 overflow-x-auto">
+      <div class="flex border-b mt-10 mb-8 overflow-x-auto pb-1">
         <div class="tab-active px-6 py-4 border-b-4 border-purple-600 text-purple-700 font-semibold whitespace-nowrap">📎 Merge PDF</div>
         <div class="tab px-6 py-4 text-zinc-500 hover:text-zinc-700 whitespace-nowrap">📖 How to Use</div>
         <div class="tab px-6 py-4 text-zinc-500 hover:text-zinc-700 whitespace-nowrap">❓ FAQ</div>
       </div>
 
-      <!-- Upload Zone -->
+      <!-- Upload Zone - More Attractive -->
       <div id="dropzone" 
-           class="upload-zone border-3 border-dashed border-purple-400 bg-purple-50 hover:bg-purple-100 rounded-3xl p-16 md:p-20 text-center cursor-pointer transition-all">
+           class="upload-zone border-3 border-dashed border-purple-400 bg-gradient-to-br from-purple-50 to-violet-50 hover:from-purple-100 hover:to-violet-100 rounded-3xl p-12 md:p-20 text-center cursor-pointer transition-all">
         <div class="text-7xl mb-6">☁️</div>
-        <p class="text-2xl md:text-3xl font-medium text-purple-700 mb-3">Click to upload PDF files</p>
-        <p class="text-purple-600">or drag and drop multiple files here</p>
-        <p class="text-sm text-purple-500 mt-4">Maximum 100MB per file • Your files never leave your device</p>
+        <p class="text-2xl md:text-3xl font-medium text-purple-700 mb-3">Click to upload or drag & drop</p>
+        <p class="text-purple-600 text-lg">Select multiple PDF files to merge</p>
+        <p class="text-sm text-purple-500 mt-6">Maximum 100MB per file • Files never leave your browser</p>
       </div>
 
       <!-- Merge Button -->
       <button id="mergeBtn"
-              class="mt-10 w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white py-5 rounded-3xl text-xl font-semibold transition-all">
+              class="mt-10 w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white py-5 rounded-3xl text-xl font-semibold shadow-lg transition-all active:scale-95">
         Merge <span id="fileCount">0</span> PDFs
       </button>
 
       <!-- Result Area -->
-      <div id="resultArea" class="hidden mt-8 p-6 bg-white border border-zinc-200 rounded-3xl"></div>
+      <div id="resultArea" class="hidden mt-8 p-6 bg-white border border-zinc-200 rounded-3xl text-center">
+        <p class="text-green-600 font-medium">✅ Files merged successfully!</p>
+        <button class="mt-4 bg-emerald-600 text-white px-8 py-3 rounded-2xl">Download Merged PDF</button>
+      </div>
     </div>
   </div>
 </div>
 
-<script src="../nav-footer.js"></script>
 <script>
-// Simple Sidebar Render (same as homepage)
-const TOOLS = [ /* yahan homepage wala TOOLS array paste kar sakte ho */ ];
+// Sidebar Rendering
+const TOOLS = [
+  {name:'Compress PDF', icon:'🗜', url:'compress-pdf.html'},
+  {name:'Merge PDF', icon:'📎', url:'merge-pdf.html'},
+  {name:'Split PDF', icon:'✂️', url:'split-pdf.html'},
+  {name:'JPG to PDF', icon:'📸', url:'jpg-to-pdf.html'},
+  {name:'Image Compressor', icon:'🖼', url:'image-compress.html'},
+  {name:'QR Code Generator', icon:'📱', url:'qr-code-generator.html'}
+];
 
 function renderSidebar() {
   const container = document.getElementById('sidebar-list');
-  if (!container) return;
   container.innerHTML = TOOLS.map(t => `
     <a href="${t.url}" class="flex items-center gap-3 px-4 py-3 hover:bg-purple-50 rounded-2xl transition-all">
       <span class="text-2xl">${t.icon}</span>
-      <span>${t.name}</span>
+      <span class="font-medium">${t.name}</span>
     </a>
   `).join('');
 }
 
-// Mobile Sidebar
+// Mobile Sidebar Toggle
 function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  sidebar.classList.toggle('-translate-x-full');
+  document.getElementById('sidebar').classList.toggle('-translate-x-full');
 }
 
-// Basic Upload Logic
+// Upload Logic
 let selectedFiles = 0;
-
 const dropzone = document.getElementById('dropzone');
 const mergeBtn = document.getElementById('mergeBtn');
 const fileCountEl = document.getElementById('fileCount');
+const resultArea = document.getElementById('resultArea');
 
 dropzone.addEventListener('click', () => {
   const input = document.createElement('input');
@@ -125,6 +130,17 @@ dropzone.addEventListener('click', () => {
     mergeBtn.textContent = `Merge ${selectedFiles} PDFs`;
   };
   input.click();
+});
+
+// Fake Merge Action (Demo)
+mergeBtn.addEventListener('click', () => {
+  if (selectedFiles > 0) {
+    mergeBtn.innerHTML = `Merging ${selectedFiles} PDFs...`;
+    setTimeout(() => {
+      resultArea.classList.remove('hidden');
+      mergeBtn.textContent = `Merge ${selectedFiles} PDFs`;
+    }, 1500);
+  }
 });
 
 // Initialize
