@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToolNest — Free Online Tools</title>
-    <meta name="description" content="20+ Free PDF, Image, QR Code & Productivity Tools. No signup, 100% browser-based. Made for India.">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
@@ -18,12 +17,12 @@
 </head>
 <body class="bg-zinc-50">
 
-<!-- Hero Section -->
+<!-- Hero -->
 <section class="py-20 bg-gradient-to-br from-purple-50 via-white to-amber-50">
     <div class="max-w-5xl mx-auto px-6 text-center">
         <div class="inline-flex items-center gap-3 bg-white border border-purple-200 rounded-full px-6 py-3 mb-10 shadow">
             <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
-            <span class="font-semibold text-emerald-700">Free • No Signup • 100% Browser-based • Made for India 🇮🇳</span>
+            <span class="font-semibold text-emerald-700">Free • No Signup • Browser-based • Made for India 🇮🇳</span>
         </div>
 
         <h1 class="text-5xl md:text-6xl font-bold tracking-tighter mb-6">
@@ -32,16 +31,15 @@
         </h1>
 
         <p class="max-w-2xl mx-auto text-xl text-zinc-600 mb-12">
-            20+ powerful tools for PDF, images, QR codes, GST invoices & more.<br>
+            20+ powerful tools for PDF, images, QR codes & more.<br>
             Everything runs locally in your browser.
         </p>
 
-        <!-- Search Bar -->
         <div class="max-w-xl mx-auto">
             <div class="flex bg-white border-2 border-zinc-300 rounded-3xl overflow-hidden shadow focus-within:border-purple-500">
                 <input type="text" id="heroInput" 
                        class="flex-1 px-8 py-6 text-lg outline-none" 
-                       placeholder="Search tools... e.g. merge pdf, compress image, qr code"
+                       placeholder="Search tools... e.g. merge pdf, compress image"
                        oninput="heroSearch(this.value)">
                 <button class="bg-purple-600 text-white px-10 font-semibold">Search</button>
             </div>
@@ -51,7 +49,6 @@
 
 <!-- Main Content -->
 <div class="max-w-6xl mx-auto px-6 py-12">
-    <!-- Category Tabs -->
     <div class="flex flex-wrap gap-3 mb-10" id="catBar">
         <div class="cat-pill active px-6 py-3 cursor-pointer" onclick="filterCat('all', this)">⚡ All Tools</div>
         <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('pdf', this)">📄 PDF Tools</div>
@@ -64,7 +61,6 @@
         <p id="toolCount" class="text-zinc-500 font-medium">20 tools</p>
     </div>
 
-    <!-- Tools Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="toolsGrid"></div>
 </div>
 
@@ -72,18 +68,56 @@
 // Tools Data
 const TOOLS = [
   {name:'Compress PDF', desc:'Reduce PDF size without losing quality', icon:'🗜', cat:'pdf', url:'tools/compress-pdf.html'},
-  {name:'Merge PDF', desc:'Combine multiple PDFs into one file', icon:'📎', cat:'pdf', url:'tools/merge-pdf.html'},
+  {name:'Merge PDF', desc:'Combine multiple PDFs into one', icon:'📎', cat:'pdf', url:'tools/merge-pdf.html'},
   {name:'Split PDF', desc:'Split PDF into multiple files', icon:'✂️', cat:'pdf', url:'tools/split-pdf.html'},
   {name:'JPG to PDF', desc:'Convert images to PDF', icon:'📸', cat:'pdf', url:'tools/jpg-to-pdf.html'},
   {name:'Image Compressor', desc:'Compress images up to 90%', icon:'🖼', cat:'image', url:'tools/image-compress.html'},
   {name:'QR Code Generator', desc:'Create QR, UPI, WiFi codes', icon:'📱', cat:'productivity', url:'tools/qr-code-generator.html'},
-  {name:'GST Invoice Generator', desc:'Professional GST invoices for India', icon:'🧾', cat:'business', url:'tools/invoice-generator.html'}
+  {name:'GST Invoice Generator', desc:'Professional GST invoices', icon:'🧾', cat:'business', url:'tools/invoice-generator.html'}
 ];
 
-// Render Tools Function
+// Render Tools with Colourful Icons
 function renderTools(list) {
   const grid = document.getElementById('toolsGrid');
   grid.innerHTML = list.map(t => `
-    <a href="${t.url}" class="tool-card bg-white border-2 border-zinc-200 rounded-3xl p-8 hover:border-purple-500 transition-all block">
-      <div class="text-6xl mb-6">${t.icon}</div>
-      <h3 class="font
+    <a href="${t.url}" class="tool-card group bg-white border-2 border-zinc-200 rounded-3xl p-8 hover:border-purple-500 transition-all block">
+      <div class="icon-wrapper w-20 h-20 mx-auto mb-6 flex items-center justify-center text-5xl rounded-2xl transition-all group-hover:scale-110">
+        ${t.icon}
+      </div>
+      <h3 class="font-bold text-xl mb-3 text-center">${t.name}</h3>
+      <p class="text-zinc-600 text-center">${t.desc}</p>
+    </a>
+  `).join('');
+  document.getElementById('toolCount').textContent = list.length + " tools";
+}
+
+// Filter Category
+function filterCat(cat, el) {
+  document.querySelectorAll('.cat-pill').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+
+  let title = cat === 'all' ? 'All Tools' : cat === 'pdf' ? 'PDF Tools' : cat === 'image' ? 'Image Tools' : 'Productivity Tools';
+  document.getElementById('gridTitle').textContent = title;
+
+  const filtered = cat === 'all' ? TOOLS : TOOLS.filter(t => t.cat === cat);
+  renderTools(filtered);
+}
+
+// Search
+function heroSearch(value) {
+  const term = value.toLowerCase();
+  if (!term) {
+    filterCat('all', document.querySelector('.cat-pill'));
+    return;
+  }
+  const results = TOOLS.filter(t => t.name.toLowerCase().includes(term) || t.desc.toLowerCase().includes(term));
+  renderTools(results);
+  document.getElementById('gridTitle').textContent = 'Search Results';
+}
+
+// Initialize
+renderTools(TOOLS);
+</script>
+
+</body>
+</html>
