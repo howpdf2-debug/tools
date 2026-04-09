@@ -1,15 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
 
 body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 .tool-card {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .tool-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgb(168 85 247 / 0.15);
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px -12px rgb(168 85 247 / 0.25);
   border-color: #a855f7;
+}
+
+.cat-pill {
+  padding: 12px 26px;
+  border-radius: 9999px;
+  font-weight: 600;
+  background: white;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cat-pill:hover {
+  border-color: #a855f7;
+  color: #a855f7;
+}
+
+.cat-pill.active {
+  background: linear-gradient(to right, #a855f7, #7c3aed);
+  color: white;
+  border: none;
+  box-shadow: 0 10px 15px -3px rgb(168 85 247 / 0.4);
 }
