@@ -17,78 +17,98 @@
 </head>
 <body class="bg-zinc-50">
 
-<!-- Hero -->
-<section class="py-20 bg-gradient-to-br from-purple-50 via-white to-amber-50">
-    <div class="max-w-5xl mx-auto px-6 text-center">
+<div class="flex min-h-screen">
+
+  <!-- LEFT SIDEBAR -->
+  <div class="w-72 bg-white border-r border-zinc-200 hidden lg:block overflow-y-auto">
+    <div class="p-6 sticky top-0 bg-white z-10 border-b">
+      <div class="flex items-center gap-3 mb-8">
+        <img src="favicon.png" alt="ToolNest" class="w-10 h-10">
+        <h1 class="text-2xl font-bold text-purple-700">ToolNest</h1>
+      </div>
+      <div class="text-sm font-semibold text-zinc-500 mb-4">ALL TOOLS</div>
+    </div>
+    
+    <div class="px-4" id="sidebar-list"></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="flex-1">
+
+    <!-- Hero -->
+    <section class="py-20 bg-gradient-to-br from-purple-50 via-white to-amber-50">
+      <div class="max-w-5xl mx-auto px-6 text-center">
         <div class="inline-flex items-center gap-3 bg-white border border-purple-200 rounded-full px-6 py-3 mb-10 shadow">
-            <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
-            <span class="font-semibold text-emerald-700">Free • No Signup • Browser-based • Made for India 🇮🇳</span>
+          <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
+          <span class="font-semibold text-emerald-700">Free • No Signup • Browser-based • Made for India 🇮🇳</span>
         </div>
 
         <h1 class="text-5xl md:text-6xl font-bold tracking-tighter mb-6">
-            Free Online Tools.<br>
-            <span class="bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">Simple. Fast. Private.</span>
+          Free Online Tools.<br>
+          <span class="bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">Simple. Fast. Private.</span>
         </h1>
 
         <p class="max-w-2xl mx-auto text-xl text-zinc-600 mb-12">
-            20+ powerful tools for PDF, images, QR codes & more.<br>
-            Everything runs locally in your browser.
+          20+ powerful tools for PDF, images, QR codes & more.<br>
+          Everything runs locally in your browser.
         </p>
 
         <div class="max-w-xl mx-auto">
-            <div class="flex bg-white border-2 border-zinc-300 rounded-3xl overflow-hidden shadow focus-within:border-purple-500">
-                <input type="text" id="heroInput" 
-                       class="flex-1 px-8 py-6 text-lg outline-none" 
-                       placeholder="Search tools... e.g. merge pdf, compress image"
-                       oninput="heroSearch(this.value)">
-                <button class="bg-purple-600 text-white px-10 font-semibold">Search</button>
-            </div>
+          <div class="flex bg-white border-2 border-zinc-300 rounded-3xl overflow-hidden shadow focus-within:border-purple-500">
+            <input type="text" id="heroInput" 
+                   class="flex-1 px-8 py-6 text-lg outline-none" 
+                   placeholder="Search tools... e.g. merge pdf, compress image"
+                   oninput="heroSearch(this.value)">
+            <button class="bg-purple-600 text-white px-10 font-semibold">Search</button>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- Main Content -->
-<div class="max-w-6xl mx-auto px-6 py-12">
-    <div class="flex flex-wrap gap-3 mb-10" id="catBar">
+    <!-- Main Content Area -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <div class="flex flex-wrap gap-3 mb-10" id="catBar">
         <div class="cat-pill active px-6 py-3 cursor-pointer" onclick="filterCat('all', this)">⚡ All Tools</div>
         <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('pdf', this)">📄 PDF Tools</div>
         <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('image', this)">🖼 Image Tools</div>
         <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('productivity', this)">🔑 Productivity</div>
         <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('business', this)">💼 Business</div>
-    </div>
+      </div>
 
-    <div class="flex justify-between items-center mb-8">
+      <div class="flex justify-between items-center mb-8">
         <h2 id="gridTitle" class="text-3xl font-bold">All Tools</h2>
         <p id="toolCount" class="text-zinc-500 font-medium">20 tools</p>
-    </div>
+      </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="toolsGrid"></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="toolsGrid"></div>
+    </div>
+  </div>
 </div>
 
 <script>
-// Tools Data with Category
+// Tools Data
 const TOOLS = [
   {name:'Compress PDF', desc:'Reduce PDF size without losing quality', icon:'🗜', cat:'pdf', url:'tools/compress-pdf.html'},
   {name:'Merge PDF', desc:'Combine multiple PDFs into one', icon:'📎', cat:'pdf', url:'tools/merge-pdf.html'},
   {name:'Split PDF', desc:'Split PDF into multiple files', icon:'✂️', cat:'pdf', url:'tools/split-pdf.html'},
   {name:'JPG to PDF', desc:'Convert images to PDF', icon:'📸', cat:'pdf', url:'tools/jpg-to-pdf.html'},
   {name:'Image Compressor', desc:'Compress images up to 90%', icon:'🖼', cat:'image', url:'tools/image-compress.html'},
-  {name:'Image Resizer', desc:'Resize images to exact dimensions', icon:'📐', cat:'image', url:'tools/image-resizer.html'},
+  {name:'Image Resizer', desc:'Resize images easily', icon:'📐', cat:'image', url:'tools/image-resizer.html'},
   {name:'QR Code Generator', desc:'Create QR, UPI, WiFi codes', icon:'📱', cat:'productivity', url:'tools/qr-code-generator.html'},
   {name:'Password Generator', desc:'Strong random passwords', icon:'🔑', cat:'productivity', url:'tools/password-generator.html'},
   {name:'GST Invoice Generator', desc:'Professional GST invoices', icon:'🧾', cat:'business', url:'tools/invoice-generator.html'}
 ];
 
-// Get gradient class based on category
+// Get gradient for icons
 function getIconGradient(cat) {
   if (cat === 'pdf') return 'from-red-400 to-pink-500';
   if (cat === 'image') return 'from-blue-400 to-cyan-500';
   if (cat === 'productivity') return 'from-amber-400 to-orange-500';
   if (cat === 'business') return 'from-emerald-400 to-teal-500';
-  return 'from-purple-400 to-violet-500'; // default
+  return 'from-purple-400 to-violet-500';
 }
 
-// Render Tools with different gradients
+// Render Main Tools Grid
 function renderTools(list) {
   const grid = document.getElementById('toolsGrid');
   grid.innerHTML = list.map(t => `
@@ -101,6 +121,17 @@ function renderTools(list) {
     </a>
   `).join('');
   document.getElementById('toolCount').textContent = list.length + " tools";
+}
+
+// Render Sidebar
+function renderSidebar() {
+  const container = document.getElementById('sidebar-list');
+  container.innerHTML = TOOLS.map(t => `
+    <a href="${t.url}" class="flex items-center gap-3 px-4 py-3 hover:bg-purple-50 rounded-2xl transition-all">
+      <span class="text-2xl">${t.icon}</span>
+      <span class="font-medium">${t.name}</span>
+    </a>
+  `).join('');
 }
 
 // Filter Category
@@ -135,6 +166,7 @@ function heroSearch(value) {
 
 // Initialize
 renderTools(TOOLS);
+renderSidebar();
 </script>
 
 </body>
