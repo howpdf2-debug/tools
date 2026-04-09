@@ -1,30 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-}
-
-.tool-card {
-  transition: all 0.4s ease;
-}
-
-.tool-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 25px -5px rgb(168 85 247 / 0.2);
-  border-color: #a855f7;
-}
-
-.cat-pill {
-  padding: 12px 24px;
-  border-radius: 9999px;
-  font-weight: 600;
-  background: white;
-  border: 2px solid #e5e7eb;
-  transition: all 0.3s;
-}
-
-.cat-pill.active {
-  background: linear-gradient(to right, #a855f7, #7c3aed);
-  color: white;
-  border: none;
 }
