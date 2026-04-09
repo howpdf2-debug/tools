@@ -4,17 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToolNest — Free Online Tools</title>
-    <meta name="description" content="20+ Free PDF, Image, QR Code & Productivity Tools. No signup, 100% browser-based. Made for India.">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" href="favicon.png">
+
+    <script>
+        tailwind.config = {
+            content: ["./**/*.html"]
+        }
+    </script>
 </head>
-<body class="bg-zinc-50">
+<body class="bg-zinc-50 p-8">
 
-<!-- Hero + Tools Grid wala pura code yahan paste kar do jo maine pehle diya tha -->
+    <h1 class="text-5xl font-bold text-purple-600 mb-4">ToolNest</h1>
+    <p class="text-xl text-zinc-600">Free Online Tools - PDF, Image, QR Code & more</p>
 
-<!-- (Pehle message se pura index.html code copy kar ke yahan paste kar do) -->
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="bg-white border border-purple-200 rounded-3xl p-8 text-center hover:border-purple-500 transition">
+            <div class="text-6xl mb-4">🗜</div>
+            <h3 class="font-bold text-2xl">Compress PDF</h3>
+        </div>
+        <div class="bg-white border border-purple-200 rounded-3xl p-8 text-center hover:border-purple-500 transition">
+            <div class="text-6xl mb-4">📎</div>
+            <h3 class="font-bold text-2xl">Merge PDF</h3>
+        </div>
+        <div class="bg-white border border-purple-200 rounded-3xl p-8 text-center hover:border-purple-500 transition">
+            <div class="text-6xl mb-4">🖼</div>
+            <h3 class="font-bold text-2xl">Image Compressor</h3>
+        </div>
+    </div>
+
+    <p class="mt-12 text-sm text-zinc-500">If you see this page, then basic setup is working.</p>
 
 </body>
 </html>
