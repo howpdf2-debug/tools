@@ -43,3 +43,30 @@ body {
   color: white;
   border: none;
 }
+
+
+/* ==================== TOOL PAGE SPECIFIC STYLES ==================== */
+
+/* Merge PDF Page - Upload Zone */
+.upload-zone {
+  transition: all 0.3s ease;
+}
+
+.upload-zone:hover {
+  border-color: #a855f7;
+  background-color: #f3e8ff;
+}
+
+/* Active Tab Style */
+.tab-active {
+  color: #a855f7;
+  border-bottom: 4px solid #a855f7;
+  font-weight: 600;
+}
+
+/* Extra spacing for tool pages on mobile */
+@media (max-width: 640px) {
+  .upload-zone {
+    padding: 3rem 1.5rem;
+  }
+}
