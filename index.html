@@ -54,6 +54,7 @@
         <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('pdf', this)">📄 PDF Tools</div>
         <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('image', this)">🖼 Image Tools</div>
         <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('productivity', this)">🔑 Productivity</div>
+        <div class="cat-pill px-6 py-3 cursor-pointer" onclick="filterCat('business', this)">💼 Business</div>
     </div>
 
     <div class="flex justify-between items-center mb-8">
@@ -65,23 +66,34 @@
 </div>
 
 <script>
-// Tools Data
+// Tools Data with Category
 const TOOLS = [
   {name:'Compress PDF', desc:'Reduce PDF size without losing quality', icon:'🗜', cat:'pdf', url:'tools/compress-pdf.html'},
   {name:'Merge PDF', desc:'Combine multiple PDFs into one', icon:'📎', cat:'pdf', url:'tools/merge-pdf.html'},
   {name:'Split PDF', desc:'Split PDF into multiple files', icon:'✂️', cat:'pdf', url:'tools/split-pdf.html'},
   {name:'JPG to PDF', desc:'Convert images to PDF', icon:'📸', cat:'pdf', url:'tools/jpg-to-pdf.html'},
   {name:'Image Compressor', desc:'Compress images up to 90%', icon:'🖼', cat:'image', url:'tools/image-compress.html'},
+  {name:'Image Resizer', desc:'Resize images to exact dimensions', icon:'📐', cat:'image', url:'tools/image-resizer.html'},
   {name:'QR Code Generator', desc:'Create QR, UPI, WiFi codes', icon:'📱', cat:'productivity', url:'tools/qr-code-generator.html'},
+  {name:'Password Generator', desc:'Strong random passwords', icon:'🔑', cat:'productivity', url:'tools/password-generator.html'},
   {name:'GST Invoice Generator', desc:'Professional GST invoices', icon:'🧾', cat:'business', url:'tools/invoice-generator.html'}
 ];
 
-// Render Tools with Colourful Icons
+// Get gradient class based on category
+function getIconGradient(cat) {
+  if (cat === 'pdf') return 'from-red-400 to-pink-500';
+  if (cat === 'image') return 'from-blue-400 to-cyan-500';
+  if (cat === 'productivity') return 'from-amber-400 to-orange-500';
+  if (cat === 'business') return 'from-emerald-400 to-teal-500';
+  return 'from-purple-400 to-violet-500'; // default
+}
+
+// Render Tools with different gradients
 function renderTools(list) {
   const grid = document.getElementById('toolsGrid');
   grid.innerHTML = list.map(t => `
     <a href="${t.url}" class="tool-card group bg-white border-2 border-zinc-200 rounded-3xl p-8 hover:border-purple-500 transition-all block">
-      <div class="icon-wrapper w-20 h-20 mx-auto mb-6 flex items-center justify-center text-5xl rounded-2xl transition-all group-hover:scale-110">
+      <div class="icon-wrapper w-20 h-20 mx-auto mb-6 flex items-center justify-center text-5xl rounded-2xl bg-gradient-to-br ${getIconGradient(t.cat)} shadow-lg transition-all group-hover:scale-110">
         ${t.icon}
       </div>
       <h3 class="font-bold text-xl mb-3 text-center">${t.name}</h3>
@@ -96,7 +108,11 @@ function filterCat(cat, el) {
   document.querySelectorAll('.cat-pill').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
 
-  let title = cat === 'all' ? 'All Tools' : cat === 'pdf' ? 'PDF Tools' : cat === 'image' ? 'Image Tools' : 'Productivity Tools';
+  let title = cat === 'all' ? 'All Tools' : 
+              cat === 'pdf' ? 'PDF Tools' : 
+              cat === 'image' ? 'Image Tools' : 
+              cat === 'productivity' ? 'Productivity Tools' : 'Business Tools';
+
   document.getElementById('gridTitle').textContent = title;
 
   const filtered = cat === 'all' ? TOOLS : TOOLS.filter(t => t.cat === cat);
@@ -110,7 +126,9 @@ function heroSearch(value) {
     filterCat('all', document.querySelector('.cat-pill'));
     return;
   }
-  const results = TOOLS.filter(t => t.name.toLowerCase().includes(term) || t.desc.toLowerCase().includes(term));
+  const results = TOOLS.filter(t => 
+    t.name.toLowerCase().includes(term) || t.desc.toLowerCase().includes(term)
+  );
   renderTools(results);
   document.getElementById('gridTitle').textContent = 'Search Results';
 }
