@@ -3,151 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolNest — Free PDF & Online Tools</title>
-    <meta name="description" content="20+ Free Online Tools for PDF, Image, QR Code, GST Invoice. No signup, 100% browser-based. Made for India.">
+    <title>ToolNest — Free Online Tools</title>
+    <meta name="description" content="20+ Free PDF, Image, QR Code & Productivity Tools. No signup, 100% browser-based. Made for India.">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="icon" type="image/png" href="/favicon.png">
-
-    <script>
-        tailwind.config = {
-            content: ["./**/*.html"],
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['Outfit', 'sans-serif'],
-                        body: ['Plus Jakarta Sans', 'sans-serif']
-                    },
-                    colors: {
-                        primary: '#a855f7',   // Purple (AnyTool style)
-                        accent: '#f59e0b'     // Gold
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
-<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-body">
+<body class="bg-zinc-50">
 
-<!-- NAV -->
-<div id="tn-nav"></div>
+<!-- Hero + Tools Grid wala pura code yahan paste kar do jo maine pehle diya tha -->
 
-<!-- HERO - Colourful & Attractive -->
-<section class="py-20 bg-gradient-to-br from-purple-50 via-white to-amber-50 dark:from-zinc-900 dark:to-zinc-950">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-        <div class="inline-flex items-center gap-3 bg-white dark:bg-zinc-800 border border-purple-200 dark:border-purple-800 rounded-3xl px-6 py-3 mb-10 shadow">
-            <span class="w-3.5 h-3.5 bg-emerald-500 rounded-full animate-pulse"></span>
-            <span class="text-base font-semibold text-emerald-700 dark:text-emerald-400">Free • No Signup • 100% Browser-based • Made for India 🇮🇳</span>
-        </div>
+<!-- (Pehle message se pura index.html code copy kar ke yahan paste kar do) -->
 
-        <img src="/favicon.png" alt="ToolNest" class="w-32 h-32 mx-auto mb-8 rounded-3xl shadow-2xl">
-
-        <h1 class="text-5xl md:text-6xl font-black tracking-tighter leading-none mb-6">
-            Free Online Tools.<br>
-            <span class="bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">Simple. Fast. Colourful.</span>
-        </h1>
-
-        <p class="max-w-2xl mx-auto text-xl text-zinc-600 dark:text-zinc-400 mb-12">
-            20+ powerful tools for PDF, images, QR codes & more.<br>
-            Everything runs locally in your browser.
-        </p>
-
-        <!-- Search -->
-        <div class="max-w-2xl mx-auto">
-            <div class="flex bg-white dark:bg-zinc-800 border-2 border-zinc-200 dark:border-zinc-700 rounded-3xl overflow-hidden shadow-xl focus-within:border-purple-500">
-                <input type="text" id="heroInput" placeholder="Search tools... e.g. merge pdf, compress image" 
-                       class="flex-1 bg-transparent px-8 py-6 text-lg outline-none" 
-                       oninput="heroSearch(this.value)" autocomplete="off">
-                <button onclick="openSearch()" 
-                        class="bg-gradient-to-r from-purple-600 to-violet-600 text-white px-12 font-semibold flex items-center gap-3 hover:brightness-110 transition-all">
-                    Search
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="max-w-6xl mx-auto px-6 pt-10">
-    <!-- Category Pills -->
-    <div class="cat-bar flex gap-3 overflow-x-auto pb-6" id="catBar">
-        <div class="cat-pill active" onclick="filterCat('all',this)">⚡ All Tools</div>
-        <div class="cat-pill" onclick="filterCat('pdf',this)">📄 PDF Tools</div>
-        <div class="cat-pill" onclick="filterCat('image',this)">🖼 Image Tools</div>
-        <div class="cat-pill" onclick="filterCat('productivity',this)">🔑 Productivity</div>
-        <div class="cat-pill" onclick="filterCat('business',this)">💼 Business</div>
-    </div>
-
-    <!-- Tools Section -->
-    <div class="flex justify-between items-baseline mb-8">
-        <div id="gridTitle" class="text-3xl font-bold text-zinc-900 dark:text-white">All Tools</div>
-        <div id="toolCount" class="text-zinc-500">20 tools</div>
-    </div>
-
-    <div class="tools-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="toolsGrid"></div>
-</div>
-
-<!-- Footer -->
-<div id="tn-footer"></div>
-
-<script src="/nav-footer.js"></script>
-<script>
-/* ── TOOLS DATA ── */
-const TOOLS = [
-  {name:'Compress PDF', desc:'Reduce PDF size without quality loss', icon:'🗜', cat:'pdf', badge:'hot', url:'/tools/compress-pdf.html'},
-  {name:'Merge PDF', desc:'Combine multiple PDFs into one', icon:'📎', cat:'pdf', badge:'hot', url:'/tools/merge-pdf.html'},
-  {name:'Split PDF', desc:'Split PDF into multiple files', icon:'✂️', cat:'pdf', url:'/tools/split-pdf.html'},
-  {name:'JPG to PDF', desc:'Convert images to PDF', icon:'📸', cat:'pdf', url:'/tools/jpg-to-pdf.html'},
-  {name:'Image Compressor', desc:'Compress images up to 90%', icon:'🖼', cat:'image', badge:'hot', url:'/tools/image-compress.html'},
-  {name:'QR Code Generator', desc:'Create QR codes instantly', icon:'📱', cat:'productivity', badge:'hot', url:'/tools/qr-code-generator.html'},
-  {name:'GST Invoice Generator', desc:'Professional GST invoices', icon:'🧾', cat:'business', badge:'hot', url:'/tools/invoice-generator.html'},
-  // Aur tools yahan add karte jao
-];
-
-/* Render Tools */
-function renderTools(list) {
-  const grid = document.getElementById('toolsGrid');
-  grid.innerHTML = list.map(t => `
-    <a href="${t.url}" class="tool-card bg-white dark:bg-zinc-900 border-2 border-zinc-200 dark:border-zinc-700 rounded-3xl p-8 block hover:border-purple-500 transition-all">
-      <div class="text-5xl mb-6">${t.icon}</div>
-      <div class="font-bold text-xl mb-2">${t.name}</div>
-      <div class="text-zinc-600 dark:text-zinc-400 text-base">${t.desc}</div>
-      ${t.badge ? `<div class="mt-4 inline-block bg-red-100 text-red-700 text-xs font-bold px-4 py-1.5 rounded-full">${t.badge.toUpperCase()}</div>` : ''}
-    </a>
-  `).join('');
-  document.getElementById('toolCount').textContent = list.length + " tools";
-}
-
-/* Filter */
-function filterCat(cat, el) {
-  document.querySelectorAll('.cat-pill').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-
-  let title = cat === 'all' ? 'All Tools' : 
-              cat === 'pdf' ? 'PDF Tools' : 
-              cat === 'image' ? 'Image Tools' : 
-              cat === 'productivity' ? 'Productivity Tools' : 'Business Tools';
-
-  document.getElementById('gridTitle').textContent = title;
-
-  const filtered = cat === 'all' ? TOOLS : TOOLS.filter(t => t.cat === cat);
-  renderTools(filtered);
-}
-
-/* Hero Search */
-function heroSearch(q) {
-  const s = q.toLowerCase().trim();
-  if (!s) {
-    filterCat('all', document.querySelector('.cat-pill'));
-    return;
-  }
-  const results = TOOLS.filter(t => t.name.toLowerCase().includes(s) || t.desc.toLowerCase().includes(s));
-  renderTools(results);
-  document.getElementById('gridTitle').textContent = 'Search Results';
-}
-
-/* Init */
-renderTools(TOOLS);
-</script>
 </body>
 </html>
