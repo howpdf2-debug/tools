@@ -8,42 +8,45 @@
     <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <link rel="stylesheet" href="../style.css">
     <link rel="icon" href="../favicon.png">
-    <script>
-        tailwind.config = {
-            content: ["./**/*.html"]
-        }
-    </script>
 </head>
 <body class="bg-zinc-50">
 
 <div class="flex min-h-screen">
 
-  <!-- LEFT SIDEBAR (Narrow + Scroll Arrows) -->
+  <!-- LEFT SIDEBAR -->
   <div id="sidebar" class="tool-page-sidebar bg-white border-r border-zinc-200 fixed lg:static inset-y-0 left-0 z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-hidden flex flex-col">
 
-    <div class="p-6 border-b sticky top-0 bg-white z-10">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <img src="../favicon.png" alt="ToolNest" class="w-9 h-9">
-          <h1 class="text-2xl font-bold text-purple-700">ToolNest</h1>
-        </div>
-        <button onclick="toggleSidebar()" class="lg:hidden text-3xl leading-none">✕</button>
+    <!-- Back to Home -->
+    <div class="pt-6 px-4">
+      <a href="../index.html" class="back-to-home">
+        ← Back to Home
+      </a>
+    </div>
+
+    <!-- Logo -->
+    <div class="px-6 py-4 border-b">
+      <div class="flex items-center gap-3">
+        <img src="../favicon.png" alt="ToolNest" class="w-9 h-9">
+        <h1 class="text-2xl font-bold text-purple-700">ToolNest</h1>
       </div>
     </div>
 
-    <!-- Scroll Arrows -->
+    <!-- Scroll Up Arrow -->
     <button id="scrollUp" class="sidebar-scroll-arrow hidden lg:flex">↑</button>
-    
+
+    <!-- Tools List -->
     <div class="flex-1 p-4 overflow-y-auto" id="sidebar-list"></div>
 
+    <!-- Scroll Down Arrow -->
     <button id="scrollDown" class="sidebar-scroll-arrow hidden lg:flex">↓</button>
+
   </div>
 
-  <!-- MAIN CONTENT + RIGHT AD -->
+  <!-- MAIN + RIGHT AD -->
   <div class="flex flex-1 min-w-0">
 
-    <!-- Tool Content -->
-    <div class="tool-main-content">
+    <!-- Tool Content Area -->
+    <div class="tool-main-content flex-1">
       <!-- Mobile Top Bar -->
       <div class="lg:hidden bg-white border-b p-4 flex items-center justify-between sticky top-0 z-40">
         <button onclick="toggleSidebar()" class="text-3xl">☰</button>
@@ -53,14 +56,14 @@
       <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <!-- Breadcrumb -->
         <div class="text-sm text-zinc-500 mb-6 flex items-center gap-2">
-          <a href="../index.html" class="hover:text-purple-600 transition-colors">Home</a>
+          <a href="../index.html" class="hover:text-purple-600">Home</a>
           <span>›</span>
           <span class="text-purple-700 font-medium">Merge PDF</span>
         </div>
 
         <!-- Title -->
         <h1 class="text-4xl md:text-5xl font-bold mb-2">Merge PDF</h1>
-        <p class="text-zinc-600 text-lg">Combine multiple PDF files into one document - fast, free, and 100% private</p>
+        <p class="text-zinc-600 text-lg">Combine multiple PDF files into one document - fast, free, and secure</p>
 
         <!-- Tabs -->
         <div class="flex border-b mt-10 mb-8 overflow-x-auto pb-1">
@@ -71,50 +74,52 @@
 
         <!-- Upload Zone -->
         <div id="dropzone" 
-             class="upload-zone border-4 border-dashed border-purple-400 bg-gradient-to-br from-purple-50 to-violet-50 hover:from-purple-100 hover:to-violet-100 rounded-3xl p-12 md:p-20 text-center cursor-pointer transition-all">
+             class="upload-zone border-4 border-dashed border-purple-400 bg-gradient-to-br from-purple-50 to-violet-50 rounded-3xl p-12 md:p-20 text-center cursor-pointer">
           <div class="text-8xl mb-6">☁️</div>
           <p class="text-3xl font-semibold text-purple-700">Click to upload or drag & drop</p>
-          <p class="text-purple-600 text-xl mt-2">Select multiple PDF files to merge</p>
-          <p class="text-sm text-purple-500 mt-8">Maximum 100MB per file • Files never leave your browser</p>
+          <p class="text-purple-600 text-xl mt-2">Select multiple PDF files to merge (up to 100MB each)</p>
+          <p class="text-sm text-purple-500 mt-8">Everything runs in your browser • 100% Private</p>
         </div>
 
-        <!-- Selected Files List -->
-        <div id="fileList" class="mt-8 space-y-3 min-h-[100px]"></div>
+        <!-- Selected Files -->
+        <div id="fileList" class="mt-8 space-y-3"></div>
 
         <!-- Merge Button -->
         <button id="mergeBtn"
-                class="mt-10 w-full bg-gradient-to-r from-purple-600 via-pink-600 to-violet-600 hover:from-purple-700 hover:via-pink-700 hover:to-violet-700 text-white py-6 rounded-3xl text-2xl font-bold shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3 disabled:opacity-70">
-          Merge <span id="fileCount" class="bg-white/30 px-5 py-1.5 rounded-2xl text-xl">0 PDFs</span>
+                class="mt-10 w-full bg-gradient-to-r from-purple-600 via-pink-600 to-violet-600 hover:from-purple-700 hover:via-pink-700 hover:to-violet-700 text-white py-6 rounded-3xl text-2xl font-bold shadow-xl transition-all active:scale-95 disabled:opacity-70">
+          Merge <span id="fileCount" class="bg-white/30 px-5 py-1 rounded-2xl">0 PDFs</span>
         </button>
 
-        <!-- Result Area -->
-        <div id="resultArea" class="hidden mt-8 p-8 bg-white border-2 border-emerald-200 rounded-3xl text-center">
+        <!-- Result -->
+        <div id="resultArea" class="hidden mt-8 p-8 bg-white border border-emerald-200 rounded-3xl text-center">
           <p class="text-6xl mb-4">🎉</p>
-          <p class="text-2xl font-bold text-emerald-600">PDFs merged successfully!</p>
+          <p class="text-2xl font-bold text-emerald-600">Merged Successfully!</p>
           <button onclick="downloadMerged()" 
-                  class="mt-6 bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-4 rounded-3xl text-xl font-semibold shadow-lg transition-all">
+                  class="mt-6 bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-4 rounded-3xl text-xl font-semibold">
             ⬇️ Download Merged PDF
           </button>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT ADVERTISEMENT SPACE -->
+    <!-- RIGHT ADVERTISEMENT -->
     <div class="right-ad-space hidden xl:block">
-      <div class="bg-white border border-zinc-200 rounded-3xl p-6 shadow-sm text-center">
-        <div class="text-xs uppercase tracking-widest text-zinc-400 mb-4">Advertisement</div>
-        <div class="h-72 bg-gradient-to-br from-purple-100 via-pink-100 to-violet-100 rounded-2xl flex items-center justify-center border border-dashed border-purple-300">
-          <div>
-            <p class="text-purple-400 text-lg font-medium">Ad Space</p>
-            <p class="text-xs text-zinc-500 mt-2">280 × 300 px</p>
-            <p class="text-[10px] text-zinc-400 mt-6">Your banner / Google AdSense here</p>
+      <div class="bg-white border border-zinc-200 rounded-3xl p-6 shadow-sm">
+        <div class="text-xs uppercase tracking-widest text-zinc-400 mb-4 text-center">Advertisement</div>
+        <div class="h-72 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center border border-dashed border-purple-300">
+          <div class="text-center">
+            <p class="text-purple-400 text-lg">Ad Space</p>
+            <p class="text-xs text-zinc-500 mt-2">280 × 300</p>
           </div>
         </div>
       </div>
 
-      <div class="mt-8 text-center">
-        <a href="#" class="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-medium text-sm">
-          <span>☕</span> Buy me a coffee
+      <!-- Buy me a Coffee -->
+      <div class="mt-8 flex justify-center">
+        <a href="#" onclick="alert('Thank you for supporting ToolNest ❤️')" 
+           class="buy-coffee-btn flex items-center gap-3 text-base">
+          <span class="text-xl">☕</span> 
+          Buy me a coffee
         </a>
       </div>
     </div>
@@ -123,7 +128,7 @@
 </div>
 
 <script>
-// Tools for Sidebar
+// Sidebar Data
 const TOOLS = [
   {name:'Compress PDF', icon:'🗜', url:'compress-pdf.html'},
   {name:'Merge PDF', icon:'📎', url:'merge-pdf.html'},
@@ -137,7 +142,7 @@ function renderSidebar() {
   const container = document.getElementById('sidebar-list');
   container.innerHTML = TOOLS.map(t => `
     <a href="${t.url}" class="flex items-center gap-3 px-4 py-3 hover:bg-purple-50 rounded-2xl transition-all text-sm">
-      <span class="text-2xl flex-shrink-0">${t.icon}</span>
+      <span class="text-2xl">${t.icon}</span>
       <span class="font-medium">${t.name}</span>
     </a>
   `).join('');
@@ -147,7 +152,7 @@ function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('-translate-x-full');
 }
 
-// PDF Merge Logic
+// PDF Merge Logic (same as before)
 let selectedFiles = [];
 let mergedBlob = null;
 
@@ -157,7 +162,6 @@ const mergeBtn = document.getElementById('mergeBtn');
 const fileCountEl = document.getElementById('fileCount');
 const resultArea = document.getElementById('resultArea');
 
-// Click to upload
 dropzone.addEventListener('click', () => {
   const input = document.createElement('input');
   input.type = 'file';
@@ -167,103 +171,80 @@ dropzone.addEventListener('click', () => {
   input.click();
 });
 
-// Drag and Drop
-dropzone.addEventListener('dragover', e => {
-  e.preventDefault();
-  dropzone.classList.add('!border-pink-500', '!bg-pink-50');
-});
-dropzone.addEventListener('dragleave', () => {
-  dropzone.classList.remove('!border-pink-500', '!bg-pink-50');
-});
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('!border-pink-500'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('!border-pink-500'));
 dropzone.addEventListener('drop', e => {
   e.preventDefault();
-  dropzone.classList.remove('!border-pink-500', '!bg-pink-50');
+  dropzone.classList.remove('!border-pink-500');
   handleFiles(e.dataTransfer.files);
 });
 
 function handleFiles(files) {
-  const pdfFiles = Array.from(files).filter(f => f.type === 'application/pdf');
-  selectedFiles = [...selectedFiles, ...pdfFiles];
+  const pdfs = Array.from(files).filter(f => f.type === 'application/pdf');
+  selectedFiles = [...selectedFiles, ...pdfs];
   renderFileList();
 }
 
 function renderFileList() {
   fileListEl.innerHTML = selectedFiles.map((file, i) => `
-    <div class="file-item flex items-center justify-between bg-white border border-purple-200 rounded-2xl px-6 py-4">
+    <div class="file-item flex justify-between items-center bg-white border border-purple-200 rounded-2xl px-6 py-4">
       <div class="flex items-center gap-3">
-        <span class="text-2xl">📄</span>
-        <div class="min-w-0">
-          <p class="font-medium truncate">${file.name}</p>
-          <p class="text-xs text-zinc-500">${(file.size / 1024 / 1024).toFixed(2)} MB</p>
+        <span class="text-3xl">📄</span>
+        <div>
+          <p class="font-medium truncate max-w-[280px]">${file.name}</p>
+          <p class="text-xs text-zinc-500">${(file.size/1024/1024).toFixed(2)} MB</p>
         </div>
       </div>
-      <button onclick="removeFile(${i})" class="text-red-500 hover:text-red-600 text-2xl leading-none">✕</button>
+      <button onclick="removeFile(${i})" class="text-red-500 text-2xl hover:scale-110 transition">✕</button>
     </div>
   `).join('');
 
   fileCountEl.textContent = `${selectedFiles.length} PDFs`;
 }
 
-window.removeFile = function(index) {
-  selectedFiles.splice(index, 1);
+window.removeFile = (i) => {
+  selectedFiles.splice(i, 1);
   renderFileList();
 };
 
-// Merge Button
 mergeBtn.addEventListener('click', async () => {
-  if (selectedFiles.length < 2) {
-    alert("Please select at least 2 PDF files to merge!");
-    return;
-  }
-
+  if (selectedFiles.length < 2) return alert("At least 2 PDFs required!");
+  
   mergeBtn.disabled = true;
-  mergeBtn.innerHTML = `
-    <svg class="animate-spin h-6 w-6 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-    </svg>
-    Merging PDFs...
-  `;
+  mergeBtn.innerHTML = `Merging ${selectedFiles.length} PDFs...`;
 
   try {
     const pdfDoc = await PDFLib.PDFDocument.create();
-
     for (const file of selectedFiles) {
-      const arrayBuffer = await file.arrayBuffer();
-      const donor = await PDFLib.PDFDocument.load(arrayBuffer);
+      const bytes = await file.arrayBuffer();
+      const donor = await PDFLib.PDFDocument.load(bytes);
       const pages = await pdfDoc.copyPages(donor, donor.getPageIndices());
-      pages.forEach(page => pdfDoc.addPage(page));
+      pages.forEach(p => pdfDoc.addPage(p));
     }
-
-    const mergedBytes = await pdfDoc.save();
-    mergedBlob = new Blob([mergedBytes], { type: 'application/pdf' });
+    const finalBytes = await pdfDoc.save();
+    mergedBlob = new Blob([finalBytes], {type: 'application/pdf'});
 
     resultArea.classList.remove('hidden');
-  } catch (err) {
-    alert("Error while merging: " + err.message);
+  } catch(e) {
+    alert("Merge failed: " + e.message);
   } finally {
     mergeBtn.disabled = false;
     mergeBtn.textContent = `Merge ${selectedFiles.length} PDFs`;
   }
 });
 
-window.downloadMerged = function() {
+window.downloadMerged = () => {
   if (!mergedBlob) return;
   const url = URL.createObjectURL(mergedBlob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `merged_pdf_${new Date().toISOString().slice(0,10)}.pdf`;
-  document.body.appendChild(a);
+  a.download = `merged_${new Date().toISOString().slice(0,10)}.pdf`;
   a.click();
-  document.body.removeChild(a);
   URL.revokeObjectURL(url);
 
-  // Reset after download
-  setTimeout(() => {
-    selectedFiles = [];
-    renderFileList();
-    resultArea.classList.add('hidden');
-  }, 800);
+  selectedFiles = [];
+  renderFileList();
+  resultArea.classList.add('hidden');
 };
 
 // Sidebar Scroll Arrows
@@ -271,22 +252,17 @@ const sidebarContent = document.getElementById('sidebar-list');
 const scrollUp = document.getElementById('scrollUp');
 const scrollDown = document.getElementById('scrollDown');
 
-function updateArrowVisibility() {
-  const isAtTop = sidebarContent.scrollTop <= 20;
-  const isAtBottom = sidebarContent.scrollTop + sidebarContent.clientHeight >= sidebarContent.scrollHeight - 20;
-  
-  scrollUp.classList.toggle('hidden', isAtTop);
-  scrollDown.classList.toggle('hidden', isAtBottom);
+function updateArrows() {
+  scrollUp.classList.toggle('hidden', sidebarContent.scrollTop < 30);
+  scrollDown.classList.toggle('hidden', sidebarContent.scrollTop + sidebarContent.clientHeight > sidebarContent.scrollHeight - 40);
 }
 
-sidebarContent.addEventListener('scroll', updateArrowVisibility);
+sidebarContent.addEventListener('scroll', updateArrows);
+scrollUp.addEventListener('click', () => sidebarContent.scrollBy({top: -200, behavior:'smooth'}));
+scrollDown.addEventListener('click', () => sidebarContent.scrollBy({top: 200, behavior:'smooth'}));
 
-scrollUp.addEventListener('click', () => sidebarContent.scrollBy({ top: -180, behavior: 'smooth' }));
-scrollDown.addEventListener('click', () => sidebarContent.scrollBy({ top: 180, behavior: 'smooth' }));
-
-// Initialize
 renderSidebar();
-setTimeout(updateArrowVisibility, 600);
+setTimeout(updateArrows, 500);
 </script>
 </body>
 </html>
