@@ -55,7 +55,7 @@ body {
 
 /* ==================== TOOL PAGES LAYOUT ==================== */
 .tool-page-sidebar {
-  width: 260px;
+  width: 240px;                    /* Thoda chhota initial width */
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
@@ -67,29 +67,37 @@ body {
   transition: padding-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Sidebar Resize Arrow */
+/* Sidebar Resize Arrow - Better Visibility */
 .sidebar-resize-arrow {
   position: absolute;
   top: 50%;
-  right: -14px;
+  right: -16px;
   background: white;
-  border: 2px solid #c4b5fd;
-  width: 28px;
-  height: 52px;
+  border: 2px solid #a855f7;
+  width: 32px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(167, 139, 250, 0.25);
-  z-index: 40;
-  font-size: 18px;
-  transition: all 0.3s;
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3);
+  z-index: 50;
+  font-size: 20px;
   color: #6d28d9;
+  transition: all 0.3s;
 }
 .sidebar-resize-arrow:hover {
   background: #f3e8ff;
-  transform: scale(1.1);
+  transform: scale(1.15);
+}
+
+/* Collapsed State Styling */
+.sidebar-collapsed .sidebar-text {
+  display: none;
+}
+.sidebar-collapsed {
+  width: 80px !important;
 }
 
 /* Right Advertisement */
@@ -128,7 +136,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Buy me a Coffee - Thoda Niche */
+/* Buy me a Coffee */
 .buy-coffee-btn {
   background: linear-gradient(90deg, #fbbf24, #f59e0b);
   color: #1f2937;
@@ -137,7 +145,7 @@ body {
   border-radius: 9999px;
   box-shadow: 0 10px 15px -3px rgb(245 158 11 / 0.3);
   transition: all 0.3s;
-  margin-top: 40px;   /* thoda niche */
+  margin-top: 40px;
 }
 .buy-coffee-btn:hover {
   transform: translateY(-2px);
@@ -146,14 +154,11 @@ body {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .right-ad-space, .back-to-home-btn {
+  .right-ad-space, .back-to-home-btn, .sidebar-resize-arrow {
     display: none;
   }
   .tool-main-content {
     padding-left: 16px;
     padding-right: 16px;
-  }
-  .sidebar-resize-arrow {
-    display: none;
   }
 }
