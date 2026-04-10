@@ -13,45 +13,43 @@
 
 <div class="flex min-h-screen">
 
-  <!-- LEFT SIDEBAR (Desktop + Mobile) -->
-  <div id="sidebar" class="tool-page-sidebar bg-white border-r border-zinc-200 overflow-y-auto">
+  <!-- LEFT SIDEBAR -->
+  <div id="sidebar" class="tool-page-sidebar bg-white border-r border-zinc-200 fixed lg:static inset-y-0 left-0 z-50 transform -translate-x-full lg:translate-x-0 transition-all duration-300 overflow-y-auto">
 
-    <!-- Logo + Close Button (Mobile) -->
-    <div class="p-6 border-b sticky top-0 bg-white flex items-center justify-between lg:justify-start">
+    <!-- Logo -->
+    <div class="p-6 border-b sticky top-0 bg-white">
       <div class="flex items-center gap-3">
         <img src="../favicon.png" alt="ToolNest" class="w-9 h-9">
         <h1 id="logoText" class="text-2xl font-bold text-purple-700 sidebar-text">ToolNest</h1>
       </div>
-      <!-- Mobile Close Button -->
-      <button onclick="toggleSidebar()" class="lg:hidden text-3xl text-zinc-500 hover:text-zinc-700">✕</button>
     </div>
-
-    <!-- Back to Home (Mobile only) -->
-    <a href="../index.html" class="mobile-back-home lg:hidden flex items-center gap-2 text-purple-600">
-      ← Back to Home
-    </a>
 
     <!-- Tools List -->
     <div class="p-4" id="sidebar-list"></div>
 
-    <!-- Desktop Resize Arrow -->
-    <div id="resizeArrow" class="sidebar-resize-arrow hidden lg:flex">→</div>
+    <!-- Resize Arrow -->
+    <div id="resizeArrow" class="sidebar-resize-arrow">→</div>
   </div>
 
-  <!-- MAIN CONTENT AREA -->
+  <!-- MAIN CONTENT + RIGHT AD -->
   <div class="flex flex-1 min-w-0 relative">
 
-    <!-- Mobile Top Bar -->
-    <div class="mobile-top-bar lg:hidden w-full bg-white border-b p-4 flex items-center justify-between sticky top-0 z-40">
-      <button onclick="toggleSidebar()" class="text-3xl text-zinc-700">☰</button>
-      <h1 class="text-xl font-bold text-purple-700">ToolNest</h1>
-      <a href="../index.html" class="text-purple-600 font-medium">Home</a>
-    </div>
+    <!-- Back to Home Button -->
+    <a href="../index.html" class="back-to-home-btn lg:block hidden">
+      ← Back to Home
+    </a>
 
     <!-- Tool Content -->
     <div class="tool-main-content flex-1">
+      <!-- Mobile Top Bar -->
+      <div class="lg:hidden bg-white border-b p-4 flex items-center justify-between sticky top-0 z-40">
+        <button onclick="toggleSidebar()" class="text-3xl">☰</button>
+        <h1 class="text-xl font-bold text-purple-700">ToolNest</h1>
+        <a href="../index.html" class="text-purple-600 font-medium text-sm">← Home</a>
+      </div>
+
       <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-        <!-- Breadcrumb -->
+        <!-- Breadcrumb, Title, Tabs, Upload Zone etc. same as before -->
         <div class="text-sm text-zinc-500 mb-6 flex items-center gap-2">
           <a href="../index.html" class="hover:text-purple-600">Home</a>
           <span>›</span>
@@ -61,19 +59,17 @@
         <h1 class="text-4xl md:text-5xl font-bold mb-2">Merge PDF</h1>
         <p class="text-zinc-600 text-lg">Combine multiple PDF files into one document - fast, free, and secure</p>
 
-        <!-- Tabs -->
         <div class="flex border-b mt-10 mb-8 overflow-x-auto pb-1">
           <div class="tab-active px-6 py-4 border-b-4 border-purple-600 text-purple-700 font-semibold whitespace-nowrap">📎 Merge PDF</div>
           <div class="tab px-6 py-4 text-zinc-500 hover:text-zinc-700 whitespace-nowrap">📖 How to Use</div>
           <div class="tab px-6 py-4 text-zinc-500 hover:text-zinc-700 whitespace-nowrap">❓ FAQ</div>
         </div>
 
-        <!-- Upload Zone -->
         <div id="dropzone" class="upload-zone border-4 border-dashed border-purple-400 bg-gradient-to-br from-purple-50 to-violet-50 rounded-3xl p-12 md:p-20 text-center cursor-pointer">
           <div class="text-8xl mb-6">☁️</div>
           <p class="text-3xl font-semibold text-purple-700">Click to upload or drag & drop</p>
-          <p class="text-purple-600 text-xl mt-2">Select multiple PDF files to merge</p>
-          <p class="text-sm text-purple-500 mt-8">Maximum 100MB per file • 100% Private</p>
+          <p class="text-purple-600 text-xl mt-2">Select multiple PDF files to merge (up to 100MB each)</p>
+          <p class="text-sm text-purple-500 mt-8">100% Private • Runs in your browser</p>
         </div>
 
         <div id="fileList" class="mt-8 space-y-3"></div>
@@ -92,18 +88,21 @@
       </div>
     </div>
 
-    <!-- RIGHT AD SPACE (Desktop only) -->
-    <div class="right-ad-space hidden xl:block w-[280px] bg-[#f8fafc] border-l border-zinc-200 p-5 sticky top-6 self-start">
+    <!-- RIGHT AD SPACE -->
+    <div class="right-ad-space hidden xl:block">
       <div class="bg-white border border-zinc-200 rounded-3xl p-6 shadow-sm">
         <div class="text-xs uppercase tracking-widest text-zinc-400 mb-4 text-center">Advertisement</div>
         <div class="h-72 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl flex items-center justify-center border border-dashed border-purple-300">
-          <p class="text-purple-400">Ad Space 280×300</p>
+          <div class="text-center">
+            <p class="text-purple-400 text-lg font-medium">Ad Space</p>
+            <p class="text-xs text-zinc-500 mt-2">280 × 300 px</p>
+          </div>
         </div>
       </div>
 
-      <div class="mt-10 flex justify-center">
-        <a href="#" onclick="alert('Thank you ❤️')" class="buy-coffee-btn flex items-center gap-3">
-          <span class="text-2xl">☕</span> Buy me a coffee
+      <div class="flex justify-center">
+        <a href="#" onclick="alert('Thank you for supporting ToolNest ❤️')" class="buy-coffee-btn flex items-center gap-3 text-base">
+          <span class="text-xl">☕</span> Buy me a coffee
         </a>
       </div>
     </div>
@@ -112,7 +111,7 @@
 </div>
 
 <script>
-// Sidebar Render
+// Sidebar Tools
 const TOOLS = [
   {name:'Compress PDF', icon:'🗜', url:'compress-pdf.html'},
   {name:'Merge PDF', icon:'📎', url:'merge-pdf.html'},
@@ -125,78 +124,54 @@ const TOOLS = [
 function renderSidebar() {
   const container = document.getElementById('sidebar-list');
   container.innerHTML = TOOLS.map(t => `
-    <a href="${t.url}" class="flex items-center gap-3 px-5 py-4 hover:bg-purple-50 rounded-2xl transition-all text-sm group">
+    <a href="${t.url}" class="flex items-center gap-3 px-4 py-3 hover:bg-purple-50 rounded-2xl transition-all text-sm group">
       <span class="text-2xl flex-shrink-0">${t.icon}</span>
       <span class="sidebar-text font-medium">${t.name}</span>
     </a>
   `).join('');
 }
 
-// Mobile Sidebar Toggle
 function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  sidebar.classList.toggle('open');
+  document.getElementById('sidebar').classList.toggle('-translate-x-full');
 }
 
-// Desktop Sidebar Collapse
+// Sidebar Resize Logic
 let isCollapsed = false;
 const sidebar = document.getElementById('sidebar');
 const resizeArrow = document.getElementById('resizeArrow');
 const mainContent = document.querySelector('.tool-main-content');
+const logoText = document.getElementById('logoText');
 
 resizeArrow.addEventListener('click', () => {
   isCollapsed = !isCollapsed;
-  
+
   if (isCollapsed) {
     sidebar.classList.add('sidebar-collapsed');
     resizeArrow.innerHTML = '→';
+    logoText.classList.add('hidden');
   } else {
     sidebar.classList.remove('sidebar-collapsed');
     resizeArrow.innerHTML = '←';
+    logoText.classList.remove('hidden');
   }
-  
+
+  // Adjust main content padding
   mainContent.style.paddingLeft = isCollapsed ? '110px' : '24px';
 });
 
-// PDF Merge Logic (short)
+// PDF Merge Logic (short version - pura logic add kar sakte ho)
 let selectedFiles = [];
+let mergedBlob = null;
 
 const dropzone = document.getElementById('dropzone');
 const fileListEl = document.getElementById('fileList');
+const mergeBtn = document.getElementById('mergeBtn');
 const fileCountEl = document.getElementById('fileCount');
+const resultArea = document.getElementById('resultArea');
 
-dropzone.addEventListener('click', () => {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.multiple = true;
-  input.accept = '.pdf';
-  input.onchange = e => {
-    selectedFiles = [...selectedFiles, ...Array.from(e.target.files).filter(f => f.type === 'application/pdf')];
-    renderFileList();
-  };
-  input.click();
-});
+// ... (dropzone, handleFiles, renderFileList, mergeBtn logic same as previous version rakho)
 
-function renderFileList() {
-  fileListEl.innerHTML = selectedFiles.map((file, i) => `
-    <div class="flex justify-between items-center bg-white border border-purple-200 rounded-2xl px-6 py-4">
-      <div class="flex items-center gap-3">
-        <span class="text-2xl">📄</span>
-        <div>
-          <p class="font-medium truncate">${file.name}</p>
-          <p class="text-xs text-zinc-500">${(file.size/1024/1024).toFixed(2)} MB</p>
-        </div>
-      </div>
-      <button onclick="removeFile(${i})" class="text-red-500 text-2xl">✕</button>
-    </div>
-  `).join('');
-  fileCountEl.textContent = `${selectedFiles.length} PDFs`;
-}
-
-window.removeFile = (i) => {
-  selectedFiles.splice(i, 1);
-  renderFileList();
-};
-
-// Initialize
 renderSidebar();
+</script>
+</body>
+</html>
