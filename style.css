@@ -55,16 +55,44 @@ body {
 
 /* ==================== TOOL PAGES LAYOUT ==================== */
 .tool-page-sidebar {
-  width: 260px;           /* Left sidebar width */
+  width: 260px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
 .tool-main-content {
   flex: 1;
-  padding-left: 20px;     /* Extra left margin */
-  padding-right: 20px;    /* Extra right margin before ad */
+  padding-left: 24px;
+  padding-right: 24px;
+  transition: padding-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Right Advertisement Area */
+/* Sidebar Resize Arrow */
+.sidebar-resize-arrow {
+  position: absolute;
+  top: 50%;
+  right: -14px;
+  background: white;
+  border: 2px solid #c4b5fd;
+  width: 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(167, 139, 250, 0.25);
+  z-index: 40;
+  font-size: 18px;
+  transition: all 0.3s;
+  color: #6d28d9;
+}
+.sidebar-resize-arrow:hover {
+  background: #f3e8ff;
+  transform: scale(1.1);
+}
+
+/* Right Advertisement */
 .right-ad-space {
   width: 280px;
   background: #f8fafc;
@@ -76,11 +104,11 @@ body {
   height: fit-content;
 }
 
-/* Back to Home Button - Placed near Right Sidebar */
+/* Back to Home Button */
 .back-to-home-btn {
   position: absolute;
   top: 24px;
-  right: 300px;           /* Right ad ke left side mein */
+  right: 310px;
   background: white;
   border: 2px solid #c4b5fd;
   color: #6d28d9;
@@ -100,7 +128,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Buy me a Coffee */
+/* Buy me a Coffee - Thoda Niche */
 .buy-coffee-btn {
   background: linear-gradient(90deg, #fbbf24, #f59e0b);
   color: #1f2937;
@@ -109,31 +137,23 @@ body {
   border-radius: 9999px;
   box-shadow: 0 10px 15px -3px rgb(245 158 11 / 0.3);
   transition: all 0.3s;
+  margin-top: 40px;   /* thoda niche */
 }
 .buy-coffee-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 15px 25px -5px rgb(245 158 11 / 0.4);
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1024px) {
-  .right-ad-space {
+  .right-ad-space, .back-to-home-btn {
     display: none;
-  }
-  .back-to-home-btn {
-    position: static;
-    margin: 20px 0 10px 0;
-    width: fit-content;
-    right: auto;
   }
   .tool-main-content {
     padding-left: 16px;
     padding-right: 16px;
   }
-}
-
-@media (max-width: 640px) {
-  .tool-page-sidebar {
-    width: 240px;
+  .sidebar-resize-arrow {
+    display: none;
   }
 }
