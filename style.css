@@ -4,18 +4,11 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
-/* Vibrant & Clean Effects */
-.tool-card:hover .icon-wrapper {
-  transform: scale(1.18) rotate(10deg);
-}
-.tool-card {
+/* Upload Zone */
+.upload-zone {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 0 8px rgba(168, 85, 247, 0.12);
 }
-.tool-card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 30px 45px -15px rgb(168 85 247 / 0.35);
-}
-
 .upload-zone:hover {
   border-color: #db2777;
   background: linear-gradient(135deg, #fdf4ff, #fae8e8);
@@ -27,7 +20,7 @@ body {
   border-color: #f472b6;
 }
 
-/* ==================== TOOL PAGES LAYOUT ==================== */
+/* Tool Pages Layout */
 .tool-page-sidebar {
   width: 240px;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -65,7 +58,6 @@ body {
   transform: scale(1.15);
 }
 
-/* Collapsed Sidebar */
 .sidebar-collapsed {
   width: 80px !important;
 }
@@ -73,7 +65,7 @@ body {
   display: none;
 }
 
-/* Right Ad Space - AdSense Friendly */
+/* Right Ad */
 .right-ad-space {
   width: 280px;
   background: #f8fafc;
@@ -82,22 +74,21 @@ body {
   position: sticky;
   top: 24px;
   align-self: start;
-  height: fit-content;
 }
 
-/* Bottom Footer Bar */
+/* Footer - AnyTool Style */
 .tool-footer {
-  background: white;
+  background: #f8fafc;
   border-top: 1px solid #e5e7eb;
-  padding: 20px 0;
-  margin-top: 80px;
+  padding: 40px 0 30px;
+  margin-top: 100px;
 }
 
 .tool-footer a:hover {
   color: #a855f7;
 }
 
-/* Fixed Coffee Button - Bottom Right */
+/* Fixed Coffee Button */
 .coffee-fixed {
   position: fixed;
   bottom: 24px;
@@ -107,7 +98,7 @@ body {
   font-weight: 700;
   padding: 12px 24px;
   border-radius: 9999px;
-  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
   z-index: 100;
   display: flex;
   align-items: center;
@@ -132,6 +123,5 @@ body {
     bottom: 16px;
     right: 16px;
     padding: 10px 20px;
-    font-size: 14px;
   }
 }
