@@ -4,71 +4,113 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
-/* Icon Styling */
+/* Vibrant Icon Styling */
 .icon-wrapper {
   color: white;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.25);
   transition: all 0.4s ease;
 }
 .tool-card:hover .icon-wrapper {
-  transform: scale(1.15) rotate(8deg);
-  box-shadow: 0 25px 30px -10px rgb(168 85 247 / 0.4);
+  transform: scale(1.18) rotate(10deg);
+  box-shadow: 0 25px 35px -10px rgb(168 85 247 / 0.45);
 }
 
-/* Tool Card - More Premium */
+/* Tool Card */
 .tool-card {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .tool-card:hover {
   transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 30px 40px -15px rgb(168 85 247 / 0.3);
+  box-shadow: 0 30px 45px -15px rgb(168 85 247 / 0.35);
   border-color: #c026d3;
 }
 
-/* Category Pills - More Vibrant */
+/* Category Pills */
 .cat-pill {
   padding: 12px 24px;
   border-radius: 9999px;
   font-weight: 600;
   background: white;
   border: 2px solid #e5e7eb;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s;
 }
 .cat-pill.active {
   background: linear-gradient(90deg, #a855f7, #ec4899, #f43f5e);
   color: white;
   border: none;
-  box-shadow: 0 10px 15px -3px rgb(236 72 153 / 0.3);
+  box-shadow: 0 10px 20px -5px rgb(236 72 153 / 0.4);
 }
 
-/* Upload Zone - Super Attractive */
+/* Upload Zone */
 .upload-zone {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.15);
+  box-shadow: 0 0 0 8px rgba(168, 85, 247, 0.12);
 }
 .upload-zone:hover {
-  border-color: #c026d3;
-  background: linear-gradient(135deg, #f3e8ff, #fae8e8);
-  transform: scale(1.02);
-  box-shadow: 0 25px 50px -12px rgb(168 85 247 / 0.3);
+  border-color: #db2777;
+  background: linear-gradient(135deg, #fdf4ff, #fae8e8);
+  transform: scale(1.015);
 }
 
-/* File List Item */
+/* File Item */
 .file-item {
   transition: all 0.2s;
 }
 .file-item:hover {
-  background-color: #f3e8ff;
+  background-color: #fae8e8;
+  border-color: #f472b6;
 }
 
-/* ==================== TOOL PAGES LAYOUT IMPROVEMENTS ==================== */
+/* ==================== TOOL PAGES LAYOUT ==================== */
 
-/* Narrower Left Sidebar for Tool Pages */
+/* Left Sidebar - Narrow + Back to Home */
 .tool-page-sidebar {
   width: 260px;
 }
 
-/* Right Advertisement Sidebar */
+.back-to-home {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin: 8px 16px;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: #7c3aed;
+  transition: all 0.3s;
+}
+.back-to-home:hover {
+  background: #f3e8ff;
+  color: #6d28d9;
+}
+
+/* Scroll Arrows */
+.sidebar-scroll-arrow {
+  position: absolute;
+  right: 12px;
+  background: white;
+  border: 1px solid #d1d5db;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  z-index: 30;
+  font-size: 20px;
+  transition: all 0.2s;
+}
+.sidebar-scroll-arrow:hover {
+  background: #f3e8ff;
+  color: #a855f7;
+  transform: scale(1.2);
+}
+#scrollUp { top: 110px; }
+#scrollDown { bottom: 90px; }
+
+/* Right Ad Space */
 .right-ad-space {
   width: 280px;
   background: #f8fafc;
@@ -78,41 +120,20 @@ body {
   top: 24px;
   align-self: start;
   height: fit-content;
-  border-top: 1px solid #f1f5f9;
 }
 
-/* Scroll Arrows for Left Sidebar */
-.sidebar-scroll-arrow {
-  position: absolute;
-  right: 12px;
-  background: white;
-  border: 1px solid #d1d5db;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  z-index: 20;
-  transition: all 0.2s;
-  font-size: 18px;
+.buy-coffee-btn {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  color: #1f2937;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgb(245 158 11 / 0.3);
+  transition: all 0.3s;
 }
-
-.sidebar-scroll-arrow:hover {
-  background: #f3e8ff;
-  color: #a855f7;
-  transform: scale(1.15);
-}
-
-#scrollUp { top: 85px; }
-#scrollDown { bottom: 85px; }
-
-/* Main Content Area */
-.tool-main-content {
-  flex: 1;
-  max-width: 100%;
+.buy-coffee-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px -5px rgb(245 158 11 / 0.4);
 }
 
 /* Responsive */
