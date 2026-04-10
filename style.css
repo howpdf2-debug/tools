@@ -4,19 +4,70 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
-/* ==================== COMMON STYLES ==================== */
-.tool-page-sidebar {
-  width: 260px;
+/* Vibrant Effects */
+.icon-wrapper {
+  color: white;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.25);
+  transition: all 0.4s ease;
+}
+.tool-card:hover .icon-wrapper {
+  transform: scale(1.18) rotate(10deg);
+}
+
+.tool-card {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tool-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 30px 45px -15px rgb(168 85 247 / 0.35);
+  border-color: #c026d3;
+}
+
+.cat-pill {
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 600;
+  background: white;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s;
+}
+.cat-pill.active {
+  background: linear-gradient(90deg, #a855f7, #ec4899, #f43f5e);
+  color: white;
+  border: none;
+}
+
+/* Upload Zone */
+.upload-zone {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 0 8px rgba(168, 85, 247, 0.12);
+}
+.upload-zone:hover {
+  border-color: #db2777;
+  background: linear-gradient(135deg, #fdf4ff, #fae8e8);
+  transform: scale(1.015);
+}
+
+.file-item:hover {
+  background-color: #fae8e8;
+  border-color: #f472b6;
+}
+
+/* ==================== TOOL PAGES LAYOUT ==================== */
+.tool-page-sidebar {
+  width: 240px;                    /* Thoda chhota initial width */
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
 .tool-main-content {
   flex: 1;
+  padding-left: 24px;
+  padding-right: 24px;
   transition: padding-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Desktop Resize Arrow */
+/* Sidebar Resize Arrow - Better Visibility */
 .sidebar-resize-arrow {
   position: absolute;
   top: 50%;
@@ -34,58 +85,80 @@ body {
   z-index: 50;
   font-size: 20px;
   color: #6d28d9;
+  transition: all 0.3s;
 }
 .sidebar-resize-arrow:hover {
   background: #f3e8ff;
   transform: scale(1.15);
 }
 
-/* Collapsed State (Desktop) */
-.sidebar-collapsed {
-  width: 82px !important;
-}
+/* Collapsed State Styling */
 .sidebar-collapsed .sidebar-text {
   display: none;
 }
-.sidebar-collapsed #logoText {
-  display: none;
+.sidebar-collapsed {
+  width: 80px !important;
 }
 
-/* ==================== MOBILE RESPONSIVE SIDEBAR ==================== */
+/* Right Advertisement */
+.right-ad-space {
+  width: 280px;
+  background: #f8fafc;
+  border-left: 1px solid #e5e7eb;
+  padding: 20px 16px;
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  height: fit-content;
+}
+
+/* Back to Home Button */
+.back-to-home-btn {
+  position: absolute;
+  top: 24px;
+  right: 310px;
+  background: white;
+  border: 2px solid #c4b5fd;
+  color: #6d28d9;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(167, 139, 250, 0.15);
+  transition: all 0.3s;
+  z-index: 30;
+}
+.back-to-home-btn:hover {
+  background: #f3e8ff;
+  border-color: #a855f7;
+  transform: translateY(-2px);
+}
+
+/* Buy me a Coffee */
+.buy-coffee-btn {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  color: #1f2937;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgb(245 158 11 / 0.3);
+  transition: all 0.3s;
+  margin-top: 40px;
+}
+.buy-coffee-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px -5px rgb(245 158 11 / 0.4);
+}
+
+/* Responsive */
 @media (max-width: 1024px) {
-  .tool-page-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 1000;
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.15);
-    width: 280px;                    /* Mobile mein thoda wide */
-    transform: translateX(-100%);
+  .right-ad-space, .back-to-home-btn, .sidebar-resize-arrow {
+    display: none;
   }
-
-  .tool-page-sidebar.open {
-    transform: translateX(0);
-  }
-
-  /* Mobile Top Bar */
-  .mobile-top-bar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .sidebar-resize-arrow {
-    display: none;                   /* Mobile pe resize arrow nahi chahiye */
-  }
-
-  /* Back to Home in Mobile */
-  .mobile-back-home {
-    padding: 14px 20px;
-    font-weight: 600;
-    color: #6d28d9;
-    border-bottom: 1px solid #f3e8ff;
+  .tool-main-content {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
