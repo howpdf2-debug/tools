@@ -1,4 +1,47 @@
-/* Left Sidebar Resize Arrow for Main Page */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Common Vibrant Styles */
+.tool-card:hover .icon-wrapper {
+  transform: scale(1.18) rotate(10deg);
+}
+.tool-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tool-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 30px 45px -15px rgb(168 85 247 / 0.35);
+}
+
+.upload-zone:hover {
+  border-color: #db2777;
+  background: linear-gradient(135deg, #fdf4ff, #fae8e8);
+  transform: scale(1.015);
+}
+
+.file-item:hover {
+  background-color: #fae8e8;
+  border-color: #f472b6;
+}
+
+/* Sidebar */
+.tool-page-sidebar {
+  width: 240px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.tool-main-content {
+  flex: 1;
+  padding-left: 24px;
+  padding-right: 24px;
+  transition: padding-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Resize Arrow */
 .sidebar-resize-arrow {
   position: absolute;
   top: 50%;
@@ -22,11 +65,30 @@
   transform: scale(1.15);
 }
 
-/* Footer Improvements */
+.sidebar-collapsed {
+  width: 80px !important;
+}
+.sidebar-collapsed .sidebar-text {
+  display: none;
+}
+
+/* Right Ad */
+.right-ad-space {
+  width: 280px;
+  background: #f8fafc;
+  border-left: 1px solid #e5e7eb;
+  padding: 20px 16px;
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}
+
+/* Footer - Clean & Professional */
 .tool-footer {
   background: #f8fafc;
   border-top: 1px solid #e5e7eb;
   padding: 60px 0 40px;
+  margin-top: 100px;
 }
 
 .footer-logo {
@@ -35,4 +97,41 @@
   background: linear-gradient(to right, #a855f7, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Fixed Coffee Button (Tool Pages only) */
+.coffee-fixed {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  color: #1f2937;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+}
+.coffee-fixed:hover {
+  transform: translateY(-4px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .right-ad-space, .sidebar-resize-arrow {
+    display: none;
+  }
+  .tool-main-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .coffee-fixed {
+    bottom: 16px;
+    right: 16px;
+    padding: 10px 20px;
+  }
 }
