@@ -4,6 +4,39 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
+/* Vibrant Effects */
+.icon-wrapper {
+  color: white;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.25);
+  transition: all 0.4s ease;
+}
+.tool-card:hover .icon-wrapper {
+  transform: scale(1.18) rotate(10deg);
+}
+
+.tool-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tool-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 30px 45px -15px rgb(168 85 247 / 0.35);
+  border-color: #c026d3;
+}
+
+.cat-pill {
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 600;
+  background: white;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s;
+}
+.cat-pill.active {
+  background: linear-gradient(90deg, #a855f7, #ec4899, #f43f5e);
+  color: white;
+  border: none;
+}
+
 /* Upload Zone */
 .upload-zone {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -20,7 +53,7 @@ body {
   border-color: #f472b6;
 }
 
-/* Tool Pages Layout */
+/* ==================== TOOL PAGES LAYOUT ==================== */
 .tool-page-sidebar {
   width: 240px;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -58,6 +91,7 @@ body {
   transform: scale(1.15);
 }
 
+/* Collapsed Sidebar */
 .sidebar-collapsed {
   width: 80px !important;
 }
@@ -65,7 +99,7 @@ body {
   display: none;
 }
 
-/* Right Ad */
+/* Right Advertisement Space */
 .right-ad-space {
   width: 280px;
   background: #f8fafc;
@@ -74,6 +108,7 @@ body {
   position: sticky;
   top: 24px;
   align-self: start;
+  height: fit-content;
 }
 
 /* Footer - AnyTool Style */
@@ -81,11 +116,7 @@ body {
   background: #f8fafc;
   border-top: 1px solid #e5e7eb;
   padding: 40px 0 30px;
-  margin-top: 100px;
-}
-
-.tool-footer a:hover {
-  color: #a855f7;
+  margin-top: 80px;
 }
 
 /* Fixed Coffee Button */
@@ -110,6 +141,27 @@ body {
   box-shadow: 0 15px 30px rgba(245, 158, 11, 0.5);
 }
 
+/* Related Tools */
+.related-tools {
+  margin-top: 80px;
+}
+.related-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.related-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgb(168 85 247 / 0.25);
+}
+
+/* Share Button */
+.share-btn {
+  transition: all 0.3s;
+}
+.share-btn:hover {
+  background-color: #f3e8ff;
+  color: #a855f7;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .right-ad-space, .sidebar-resize-arrow {
@@ -123,5 +175,6 @@ body {
     bottom: 16px;
     right: 16px;
     padding: 10px 20px;
+    font-size: 14px;
   }
 }
